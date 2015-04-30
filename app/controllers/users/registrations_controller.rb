@@ -2,15 +2,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
+  include ApplicationHelper
+  
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  #def new
+  #  super
+  #end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    p "current_user: #{current_user}"
+    start_user_login
+  end
 
   # GET /resource/edit
   # def edit

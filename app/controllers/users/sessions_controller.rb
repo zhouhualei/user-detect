@@ -1,4 +1,6 @@
 class Users::SessionsController < Devise::SessionsController
+
+  include ApplicationHelper
 # before_filter :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -9,33 +11,14 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     super
-
-    if user_signed_in?
-      p "add some logic here when user sign in successfully"
-      p current_user
-      # accumulate login times
-      login_times = current_user.login_times.nil?? 0 : current_user.login_times
-      current_user.login_times = login_times + 1
-
-      # set login time
-      current_user.last_login_time = Time.now
-
-      current_user.save
-      p "finished some logic when user sign in successfully"      
-    end
+    start_user_login
   end
 
   # DELETE /resource/sign_out
   def destroy
     # accumulate login time
-    if user_signed_in?
-      total_online_seconds = current_user.total_online_seconds.nil?? 0 : current_user.total_online_seconds
-      total_online_seconds += (Time.now - current_user.last_login_time)
-      current_user.total_online_seconds = total_online_seconds
-      current_user.save
-    end
+    end_user_login
     super
-    p "add some logic here when user sign out successfully"
   end
 
   # protected

@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     else
       @guest_visit_time = 0
     end
-    @online_member_count = 0
+    @online_member_count = ActiveRecord::SessionStore::Session.all.length
   end
 
 end

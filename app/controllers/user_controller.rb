@@ -2,7 +2,7 @@ class UserController < ApplicationController
 
   def number
     @number = {
-      :online_member_count => "hardcode_usernum"
+      :online_member_count => ActiveRecord::SessionStore::Session.all.length
     }
     render json: @number
   end

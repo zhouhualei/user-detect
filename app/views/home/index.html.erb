@@ -1,7 +1,7 @@
 <div class="content">
   <p>
     <% if user_signed_in? %>
-      <strong><%= current_user.email %></strong>, 谢谢你登录了我们网站！你已经登录了<%= @member_login_times %>次了, 总共登录时间是<%= @member_login_time %>分钟了。
+      <strong><%= current_user.email %></strong>, 谢谢你登录了我们网站！你已经登录了<%= @member_login_times %>次了, 总共登录时间是<%= @member_online_minutes %>分钟了。
     <% else %>
       你好，陌生人！你没有登录，或者你还没有注册，但是你已经浏览这个页面<%= @guest_visit_time %>分钟了。
     <% end %>

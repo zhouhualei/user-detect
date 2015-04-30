@@ -27,7 +27,8 @@ ActiveRecord::Schema.define(version: 20150430070026) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "login_times"
-    t.integer  "history_login_time"
+    t.integer  "total_online_seconds"
+    t.datetime "last_login_time"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

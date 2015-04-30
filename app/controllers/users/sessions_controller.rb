@@ -28,13 +28,14 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     # accumulate login time
-    unless user_signed_in?
+    if user_signed_in?
       total_online_seconds = current_user.total_online_seconds.nil?? 0 : current_user.total_online_seconds
-      current_user.total_online_seconds += total_online_seconds + (Time.now - current_user.last_login_time)
+      total_online_seconds += (Time.now - current_user.last_login_time)
+      current_user.total_online_seconds = total_online_seconds
       current_user.save
     end
     super
-    p "add some logic here when user sign in successfully"
+    p "add some logic here when user sign out successfully"
   end
 
   # protected
